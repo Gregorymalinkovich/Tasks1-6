@@ -12,3 +12,4 @@ D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\refint\New Project.dll
 D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.pdb
 D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.genruntimeconfig.cache
 D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\ref\New Project.dll
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.sourcelink.json
