@@ -1,0 +1,15 @@
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.AssemblyInfoInputs.cache
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.AssemblyInfo.cs
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.csproj.CoreCompileInputs.cache
+D:\Visual Studio\New Project\New Project\bin\Debug\net8.0\New Project.exe
+D:\Visual Studio\New Project\New Project\bin\Debug\net8.0\New Project.deps.json
+D:\Visual Studio\New Project\New Project\bin\Debug\net8.0\New Project.runtimeconfig.json
+D:\Visual Studio\New Project\New Project\bin\Debug\net8.0\New Project.dll
+D:\Visual Studio\New Project\New Project\bin\Debug\net8.0\New Project.pdb
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.dll
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\refint\New Project.dll
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.pdb
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.genruntimeconfig.cache
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\ref\New Project.dll
+D:\Visual Studio\New Project\New Project\obj\Debug\net8.0\New Project.sourcelink.json
