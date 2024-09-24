@@ -1,10 +1,11 @@
-﻿using System;
+﻿using New_Project;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace New_Project
 {
-    
     public class Node<T>
     {
         public T Data { get; set; }
@@ -16,8 +17,6 @@ namespace New_Project
             Next = null;
         }
     }
-
-   
     public class MyList<T> : IEnumerable<T>
     {
         private Node<T> _head;
@@ -29,7 +28,6 @@ namespace New_Project
             _count = 0;
         }
 
-       
         public void AddFirst(T data)
         {
             Node<T> newNode = new Node<T>(data);
@@ -38,7 +36,6 @@ namespace New_Project
             _count++;
         }
 
-       
         public int IndexOf(T data)
         {
             Node<T> current = _head;
@@ -52,16 +49,14 @@ namespace New_Project
                 current = current.Next;
                 index++;
             }
-            return -1; 
+            return -1;
         }
 
-        
         public int Count
         {
             get { return _count; }
         }
 
-        
         public T Get(int position)
         {
             if (position < 0 || position >= _count)
@@ -77,7 +72,6 @@ namespace New_Project
             return current.Data;
         }
 
-        
         public void Remove(T data)
         {
             if (_head == null)
@@ -103,7 +97,6 @@ namespace New_Project
             }
         }
 
-        
         public IEnumerator<T> GetEnumerator()
         {
             Node<T> current = _head;
@@ -120,7 +113,7 @@ namespace New_Project
         }
     }
 
-    public class Order
+    public class Order : IComparable<Order>
     {
         public string ProductName { get; set; }
         public string DeliveryAddress { get; set; }
@@ -163,6 +156,7 @@ namespace New_Project
         private float _price;
 
 
+
         public Order(string productName, long phoneNumber, float price, string deliveryAddress)
         {
             ProductName = productName;
@@ -178,6 +172,12 @@ namespace New_Project
             Console.WriteLine($"Price: {Price}");
             Console.WriteLine($"Delivery address: {DeliveryAddress}");
         }
+
+        public int CompareTo(Order other)
+        {
+            if (other == null) return 1;
+            return PhoneNumber.CompareTo(other.PhoneNumber);
+        }
     }
 
     public class VIPOrder : Order
@@ -189,6 +189,7 @@ namespace New_Project
         {
             Gift = gift;
         }
+
         public override void DisplayInformation()
         {
             base.DisplayInformation();
@@ -227,7 +228,6 @@ namespace New_Project
     {
         public static void Main(string[] args)
         {
-           
             MyList<Order> orders = new MyList<Order>();
 
             orders.AddFirst(new Order("Whysk", 1234567890123, 20f, "Minsk"));
@@ -239,7 +239,7 @@ namespace New_Project
             newOrders.AddFirst(new DiscountOrder("Mac", 3756543210123, 999, "Riga", 10f));
             newOrders.AddFirst(new OrdinaryOrder("Camera", 1112223333123, 990, "Poznan"));
 
-            
+
             Console.WriteLine("Orders:");
             foreach (Order order in orders)
             {
@@ -266,6 +266,89 @@ namespace New_Project
                 Console.WriteLine();
             }
 
+            List<Order> orderList = new List<Order>(orders);
+
+            orderList.Sort();
+            Console.WriteLine("Sorted by Phone Number:");
+            foreach (var order in orderList)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            orderList.Sort((o1, o2) => o1.ProductName.CompareTo(o2.ProductName));
+            Console.WriteLine("Sorted by Product Name:");
+            foreach (var order in orderList)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            orderList.Sort((o1, o2) => o1.Price.CompareTo(o2.Price));
+            Console.WriteLine("Sorted by Price:");
+            foreach (var order in orderList)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            orderList.Sort((o1, o2) => o1.DeliveryAddress.CompareTo(o2.DeliveryAddress));
+            Console.WriteLine("Sorted by Delivery Address:");
+            foreach (var order in orderList)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("LINQ sort price:");
+            var sortedByPriceLinq = orderList.OrderBy(o => o.Price);
+            foreach (var order in sortedByPriceLinq)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("LINQ sort DeliveryAddress:");
+            var sortedByAddressLinq = orderList.OrderBy(o => o.DeliveryAddress);
+            foreach (var order in sortedByAddressLinq)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("LINQ Sorting by ProductName and then by Price:");
+            var sortedByNameAndPriceLinq = orderList
+                .OrderBy(o => o.ProductName)
+                .ThenBy(o => o.Price);
+            foreach (var order in sortedByNameAndPriceLinq)
+            {
+                order.DisplayInformation();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Most frequent product:");
+            var mostFrequentProduct = orderList
+                .GroupBy(o => o.ProductName)
+                .OrderByDescending(g => g.Count())
+                .FirstOrDefault();
+
+            if (mostFrequentProduct != null)
+            {
+                Console.WriteLine($"Product Name: {mostFrequentProduct.Key}, Count: {mostFrequentProduct.Count()}");
+            }
+            else
+            {
+                Console.WriteLine("not found");
+            }
         }
     }
 }
+
+
+
+
+
+
+
+
+
